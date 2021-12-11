@@ -1,0 +1,17 @@
+# FIXME
+The stream or file "/var/www/html/storage/logs/laravel.log" could not be opened in append mode: Failed to open stream: Permission denied
+
+# REVIEW
+# $ docker-compose run --rm artisan storage:link
+# LINK https://stackoverflow.com/questions/50552970/laravel-docker-the-stream-or-file-var-www-html-storage-logs-laravel-log-co
+
+
+***********************************************************
+
+# FIXME
+file_put_contents(/var/www/html/storage/framework/sessions/urNJU6fu1XmQeZAy2AuKPAEuqQSzI4NrQf1EY97k): Failed to open stream: Permission denied
+
+# REVIEW At this case i needed adding 2 commands when the server runs: 👇 they were added in the nginx.dockerfile file
+RUN chmod -R gu+w ./storage
+RUN chmod -R guo+w ./storage
+# LINK https://stackoverflow.com/questions/38888568/laravel-file-put-contents-failed-to-open-stream-permission-denied-for-sessio
